@@ -18,9 +18,6 @@ head(WAUS)
 
 WAUS <- WAUS[(!is.na(WAUS$RainTomorrow)),]
 
-WAUS.rain = WAUS[(WAUS$RainTomorrow == "Yes"),]
-WAUS.norain = WAUS[(WAUS$RainTomorrow == "No"),]
-
 str(WAUS)
 attach(WAUS)
 contrasts(WindGustDir) = contr.treatment(16)
@@ -28,6 +25,13 @@ contrasts(WindDir9am) = contr.treatment(16)
 contrasts(WindDir3pm) = contr.treatment(16)
 contrasts(RainToday) = contr.treatment(2)
 
+summary(WAUS)
+
+WAUS$Evaporation <- NULL
+WAUS$Sunshine <- NULL
+
+WAUS.rain = WAUS[(WAUS$RainTomorrow == "Yes"),]
+WAUS.norain = WAUS[(WAUS$RainTomorrow == "No"),]
 
 # question 2 - split train test data
 
