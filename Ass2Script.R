@@ -30,8 +30,21 @@ summary(WAUS)
 WAUS$Evaporation <- NULL
 WAUS$Sunshine <- NULL
 
+summary(WAUS)
+
 WAUS.rain = WAUS[(WAUS$RainTomorrow == "Yes"),]
 WAUS.norain = WAUS[(WAUS$RainTomorrow == "No"),]
+
+mean.loc = aggregate(
+  cbind(MinTemp, MaxTemp, Rainfall, WindGustSpeed, WindSpeed9am, WindSpeed3pm, Humidity9am, 
+        Humidity3pm, Pressure9am, Pressure3pm, Temp9am, Temp3pm) 
+        ~ Location, WAUS, FUN = mean, na.action = na.omit)
+
+print(mean.loc)
+
+mean.loc.cloud = aggregate(cbind(Cloud9am, Cloud3pm) ~ Location, WAUS, FUN = mean)
+
+print(mean.loc.cloud)
 
 # question 2 - split train test data
 
